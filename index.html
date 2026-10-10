@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda en Línea - Comercio Electrónico</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-light: #f8f9fa;
+            --text-dark: #333333;
+            --font-family: 'Poppins', sans-serif;
+        }
+
+        /* Estilos Generales y Accesibilidad */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        /* Encabezado y Navegación */
+        header {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Secciones principales */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            display: block;
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* 1. Sección Bienvenida e Institucionalidad */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), 
+                        url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        /* 2. Sección Catálogo de Productos/Servicios */
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            border: none;
+            background-color: #e0e0e0;
+            color: var(--text-dark);
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-price {
+            font-size: 1.25rem;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        /* 3. Sección Sucursales */
+        .branches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* 4. Sección Equipo de Trabajo */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .team-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        /* 5. Sección Contactos */
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #2980b9;
+        }
+
+        /* Pie de página */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        /* Adaptabilidad Móvil (Responsive) */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Menú de Navegación -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">GlobalMarket</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Bienvenida</a></li>
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="#sucursales">Sucursales</a></li>
+                <li><a href="#equipo">Equipo</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 1. Bienvenida con la Institucionalidad -->
+    <div id="inicio" class="hero">
+        <h1>Bienvenidos a GlobalMarket</h1>
+        <p>Tu tienda en línea de confianza con soluciones integrales e innovadoras.</p>
+    </div>
+
+    <section id="institucional">
+        <h2 class="section-title">Nuestra Institucionalidad</h2>
+        <div class="values-grid">
+            <div class="card">
+                <h3>Acerca de Nosotros</h3>
+                <p>Somos una empresa dedicada a la comercialización de productos de alta calidad, enfocados en brindar la mejor experiencia digital a nuestros clientes.</p>
+            </div>
+            <div class="card">
+                <h3>Misión</h3>
+                <p>Proporcionar productos accesibles e innovadores mediante una plataforma rápida, segura y accesible desde cualquier dispositivo.</p>
+            </div>
+            <div class="card">
+                <h3>Visión</h3>
+                <p>Ser reconocidos como líderes en e-commerce internacional, destacando por la excelencia en el servicio e innovación constante.</p>
+            </div>
+            <div class="card">
+                <h3>Valores</h3>
+                <p>Integridad, Innovación, Excelencia en el Servicio, Trabajo en Equipo y Compromiso Social.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Catálogo de Productos o Servicios -->
+    <section id="catalogo">
+        <h2 class="section-title">Catálogo de Productos</h2>
+        
+        <div class="category-filter">
+            <button class="filter-btn active" onclick="filterCategory('todos')">Todos</button>
+            <button class="filter-btn" onclick="filterCategory('tecnologia')">Tecnología</button>
+            <button class="filter-btn" onclick="filterCategory('hogar')">Hogar</button>
+        </div>
+
+        <div class="catalog-grid">
+            <div class="product-card" data-category="tecnologia">
+                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=500&q=80" alt="Smartphone">
+                <div class="product-info">
+                    <h3>Smartphone Pro Max</h3>
+                    <p>Pantalla AMOLED de alta resolución, 128GB de almacenamiento y cámara triple.</p>
+                    <div class="product-price">$699.99</div>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="tecnologia">
+                <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=500&q=80" alt="Laptop Ultra">
+                <div class="product-info">
+                    <h3>Laptop Ultrabook 15"</h3>
+                    <p>Procesador de última generación, 16GB RAM y disco SSD de alta velocidad.</p>
+                    <div class="product-price">$999.99</div>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="hogar">
+                <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=500&q=80" alt="Lámpara Moderna">
+                <div class="product-info">
+                    <h3>Lámpara Inteligente</h3>
+                    <p>Control de brillo y temperatura mediante aplicación móvil y asistentes de voz.</p>
+                    <div class="product-price">$45.00</div>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="hogar">
+                <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=500&q=80" alt="Sofá Confort">
+                <div class="product-info">
+                    <h3>Sillón Ergonómico</h3>
+                    <p>Diseño moderno y máximo confort para tu sala de estar o espacio de trabajo.</p>
+                    <div class="product-price">$250.00</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Sucursales de Tiendas -->
+    <section id="sucursales">
+        <h2 class="section-title">Nuestras Sucursales</h2>
+        <div class="branches-grid">
+            <div class="card">
+                <h3>Sucursal Central</h3>
+                <p><strong>Dirección:</strong> Av. Principal #123, Ciudad Central</p>
+                <p><strong>Horarios:</strong> Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+                <p><strong>Teléfono:</strong> +503 2200-0000</p>
+            </div>
+            <div class="card">
+                <h3>Sucursal Norte</h3>
+                <p><strong>Dirección:</strong> Centro Comercial Plaza Norte, Local 45</p>
+                <p><strong>Horarios:</strong> Lunes a Domingo: 9:00 AM - 8:00 PM</p>
+                <p><strong>Teléfono:</strong> +503 2200-0001</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Equipo de Trabajo -->
+    <section id="equipo">
+        <h2 class="section-title">Nuestro Equipo</h2>
+        <div class="team-grid">
+            <div class="team-card">
+                <img src="https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg" alt="Miembro del equipo">
+                <h3>Melissa Suyapa Bonilla Pérez</h3>
+                <p>Directora Ejecutiva (CEO)</p>
+            </div>
+            <div class="team-card">
+                <img src="https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg" alt="Miembro del equipo">
+                <h3>Lindsey Hillary Molina Granados</h3>
+                <p>Gerente de Marketing</p>
+            </div>
+            <div class="team-card">
+                <img src="https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg" alt="Miembro del equipo">
+                <h3>Melissa Sarahi Martínez Joya</h3>
+                <p>Coordinadora de Operaciones</p>
+            </div>
+            <div class="team-card">
+                <img src="https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg" alt="Miembro del equipo">
+                <h3>Marbin Rene Aguilera Melendez</h3>
+                <p>Desarrollador Full Stack</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Contactos -->
+    <section id="contacto">
+        <h2 class="section-title">Formulario de Contacto</h2>
+        <div class="contact-container">
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" id="nombre" required placeholder="Tu nombre">
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" required placeholder="tu@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Consulta o Mensaje</label>
+                    <textarea id="mensaje" rows="4" required placeholder="Escribe tu consulta aquí..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Enviar Consulta</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 GlobalMarket. Licenciatura en Relaciones y Negocios Internacionales - UGB.</p>
+    </footer>
+
+    <!-- Script para Interactividad -->
+    <script>
+        // Filtrado por categorías en el catálogo
+        function filterCategory(category) {
+            const cards = document.querySelectorAll('.product-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (category === 'todos' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Evento de envío de formulario
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias por comunicarte con nosotros! Hemos recibido tu mensaje.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
